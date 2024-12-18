@@ -2,6 +2,7 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 // swift-tools-version: 5.9
+
 import PackageDescription
 
 let package = Package(
@@ -12,13 +13,17 @@ let package = Package(
     products: [
         .library(
             name: "AnalyticsSDK",
-            targets: ["AnalyticsSDK"])
+            targets: ["AnalyticsSDK"]),
     ],
     dependencies: [],
     targets: [
         .target(
             name: "AnalyticsSDK",
-            dependencies: []),
+            dependencies: [],
+            swiftSettings: [
+                .define("ANALYTICS_LOCATION", .when(configuration: .debug)),
+                .define("ANALYTICS_BASIC", .when(configuration: .debug))
+            ]),
         .testTarget(
             name: "AnalyticsSDKTests",
             dependencies: ["AnalyticsSDK"])
