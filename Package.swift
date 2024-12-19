@@ -15,17 +15,25 @@ let package = Package(
             name: "AnalyticsSDK",
             targets: ["AnalyticsSDK"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.0.0")),
+        .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.0.0"),
+        .package(url: "https://github.com/mac-cain13/R.swift.git", from: "7.0.0")
+    ],
     targets: [
         .target(
             name: "AnalyticsSDK",
-            dependencies: [],
-            swiftSettings: [
-                .define("ANALYTICS_LOCATION", .when(configuration: .debug)),
-                .define("ANALYTICS_BASIC", .when(configuration: .debug))
-            ]),
+            dependencies: [
+                "Alamofire",
+                "SDWebImage",
+                .product(name: "RswiftLibrary", package: "R.swift")
+            ],
+            resources: [
+                .process("Resources")
+            ]
+        ),
         .testTarget(
             name: "AnalyticsSDKTests",
-            dependencies: ["AnalyticsSDK"])
+            dependencies: ["AnalyticsSDK"]),
     ]
 )
