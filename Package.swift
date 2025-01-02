@@ -13,6 +13,7 @@ let package = Package(
     products: [
         .library(
             name: "AnalyticsSDK",
+            type: .dynamic,
             targets: ["AnalyticsSDK"]),
     ],
     dependencies: [

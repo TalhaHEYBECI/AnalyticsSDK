@@ -7,8 +7,8 @@
 
 import Foundation
 
-class DynamicFrameworkLoader {
-    static func loadFramework() -> Bool {
+public class DynamicFrameworkLoader {
+    public static func loadFramework() -> Bool {
         guard let frameworkPath = Bundle.main.path(forResource: "AnalyticsSDK", ofType: "framework") else {
             print("Error: Framework path not found")
             return false
